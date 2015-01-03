@@ -39,9 +39,9 @@ JHtml::_('behavior.modal');
 <div class="jcalpro_events<?php echo $moduleclass_sfx; ?>">
 	<ul class="jcalpro_events<?php echo $moduleclass_sfx; ?>">
         <?php if ($list) : ?>
+            <?php $currentMonth = null; ?>
             <?php foreach ($list as $item) :  ?>
-
-			<?php 
+			<?php
 			if ((int) $params->get('display_month_separator', 1)) {
 				if ($currentMonth != $item->month) {
 					$currentMonth = $item->month;
@@ -51,7 +51,8 @@ JHtml::_('behavior.modal');
 	        ?>
 		<li>
 			<span class="jcalpro_events_link">
-				<a href="#" title="<?php echo JCalProHelperFilter::escape($item->title); ?>" onclick="SqueezeBox.fromElement('<?php echo JCalProHelperUrl::event($item->id, true, $urlparams); ?>?tmpl=component', {size:{x:700,y:555}, handler:'iframe'});"><?php
+                <?php $urlparams['tmpl'] = 'component'; ?>
+				<a href="#" title="<?php echo JCalProHelperFilter::escape($item->title); ?>" onclick="SqueezeBox.fromElement('<?php echo JCalProHelperUrl::event($item->id, true, $urlparams); ?>', {size:{x:700,y:555}, handler:'iframe'});"><?php
 					if ($limit_title) :
 						echo JCalProHelperFilter::escape(JCalProHelperFilter::truncate($item->title, $limit_title));
 					else :

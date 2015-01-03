@@ -1,6 +1,5 @@
 <?php
 /**
- * @version		$Id: mod_jcalpro_events.php 834 2012-11-13 17:58:50Z jeffchannell $
  * @package		JCalPro
  * @subpackage	mod_jcalpro_events
 
@@ -46,22 +45,43 @@ JLoader::register('JCalProHelperUrl', JCalProHelperPath::helper() . '/url.php');
 // ensure our language files are properly loaded
 JCalPro::language('mod_jcalpro_events');
 
+// load scripts
+JCalPro::loadJsFramework();
+
 // Include the helper only once
 require_once dirname(__FILE__).'/helper.php';
 
 // add the module css
 JCalProHelperTheme::addStyleSheet('default', 'modules/events/css');
 
-$list               = modJCalProEventsHelper::getList($params);
-$moduleclass_sfx    = JCalProHelperFilter::escape($params->get('moduleclass_sfx'));
-$urlparams          = array();
-$display_date       = (int) $params->get('display_date', 1);
-$display_time       = (int) $params->get('display_time', 1);
-$limit_title        = max(0, (int) $params->get('limit_title', 0));
-$limit_description  = max(0, (int) $params->get('limit_description', 0));
-$filter_description = (bool) (int) $params->get('filter_description', true);
-$Itemid             = (int) $params->get('itemid', 0);
+$list                  = modJCalProEventsHelper::getList($params);
+$moduleclass_sfx       = JCalProHelperFilter::escape($params->get('moduleclass_sfx'));
+$urlparams             = array();
+$display_date          = (int) $params->get('display_date', 1);
+$display_time          = (int) $params->get('display_time', 1);
+$display_category      = (bool) (int) $params->get('display_category', 1);
+$display_title         = (bool) (int) $params->get('display_title', 1);
+$display_description   = (bool) (int) $params->get('display_description', 1);
+$display_location      = (bool) (int) $params->get('display_location', 0);
+$display_location_text = (bool) (int) $params->get('display_location_text', 0);
+$display_registration  = (bool) (int) $params->get('display_registration', 0);
+$display_readmore      = (bool) (int) $params->get('display_readmore', 1);
+$limit_title           = max(0, (int) $params->get('limit_title', 0));
+$limit_description     = max(0, (int) $params->get('limit_description', 0));
+$filter_description    = (bool) (int) $params->get('filter_description', true);
+$show_months           = (bool) (int) $params->get('show_months', false); // TODO add this to xml
+$featured              = (int) $params->get('featured', 1);
+$Itemid                = (int) $params->get('itemid', 0);
+$top_fields            = $params->get('top_fields', false);
+$bottom_fields         = $params->get('bottom_fields', false);
+$empty_html            = $params->get('empty_html', '');
+// only set in params if defined
 if ($Itemid) $urlparams['Itemid'] = $Itemid;
+// define these, $this_month will change as events are rendered
+$first_month = $last_month = $this_month = (($show_months && !empty($list)) ? $list[0]->user_datetime->monthName() : false);
+
+JCalPro::debugger('Params', $params, 'mod_jcalpro_events');
+JCalPro::debugger('Module', $module, 'mod_jcalpro_events');
 
 require JModuleHelper::getLayoutPath('mod_jcalpro_events', $params->get('layout', 'default'));
 

@@ -1,0 +1,93 @@
+/**
+ * @package		JCalPro
+ * @subpackage	mod_jcalpro_events
+
+**********************************************
+JCal Pro
+Copyright (c) 2006-2012 Anything-Digital.com
+**********************************************
+JCalPro is a native Joomla! calendar component for Joomla!
+
+JCal Pro was once a fork of the existing Extcalendar component for Joomla!
+(com_extcal_0_9_2_RC4.zip from mamboguru.com).
+Extcal (http://sourceforge.net/projects/extcal) was renamed
+and adapted to become a Mambo/Joomla! component by
+Matthew Friedman, and further modified by David McKinnis
+(mamboguru.com) to repair some security holes.
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This header must not be removed. Additional contributions/changes
+may be added to this header as long as no information is deleted.
+**********************************************
+Get the latest version of JCal Pro at:
+http://anything-digital.com/
+**********************************************
+
+ */
+/* these elements need to be block - we don't use default block elements inside the list though */
+.jcalpro_events_date,
+.jcalpro_events_description,
+.jcalpro_events_category {
+	display: block;
+}
+/* category links should not be as prominent */
+.jcalpro_events_category a,
+.jcalpro_events_category a:link,
+.jcalpro_events_category a:visited,
+.jcalpro_events_category a:hover,
+.jcalpro_events_category a:active {
+	color: #000000;
+	font-size: x-small;
+}
+/* pad the description */
+.jcalpro_events_description {
+	padding: 10px 5px 15px;
+}
+
+.jcalpro_events {
+	font-size: 12px;
+}
+
+.jcalpro_events ul {
+	padding: 0 10px;
+	list-style: none;
+	line-height: 0.9em;
+}
+
+.jcalpro_events li {
+	margin-bottom: 10px;
+}
+
+.jcalpro_month_separator {
+	color: #000000;
+	font-weight: bold;
+	font-style: italic;
+	text-align: center;
+	padding: 4px 0px;
+	margin: 0 14px 10px;
+	border-top: 1px solid #777777;
+	border-bottom: 1px solid #777777;
+}
+
+.jcalpro_event_list_item {
+	padding: 0 0 0 13px;
+	line-height: 1.2em;
+	background-repeat: no-repeat;
+	background-position: 0 -2px;
+	background-image:  url("../img/bullet.png");
+}
+
+.jcalpro_events_date {
+	color: #C95245;
+	font-weight: bold;
+}
+
+.jcalpro_no_events a,
+.jcalpro_events_link a {
+	color: #000000;
+	font-weight: bold;
+}
